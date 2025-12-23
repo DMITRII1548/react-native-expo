@@ -1,15 +1,21 @@
 import StyledText from "@/components/StyledText"
 import { COLORS } from "@/constants/ui"
+import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 
-const Header = () => {
+type HeaderProps = {
+    totalTodos: number,
+    completedTodos: number
+}
+
+const Header: React.FC<HeaderProps> = ({ totalTodos, completedTodos }) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerMainContent}>
                 <StyledText>TO DO LIST</StyledText>
                 <StyledText>December 19, 2025</StyledText>
             </View>
-            <StyledText>Completed: 0 / 0</StyledText>
+            <StyledText>Completed: {completedTodos} / {totalTodos}</StyledText>
         </View>
     )
 }
