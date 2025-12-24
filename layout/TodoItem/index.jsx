@@ -1,3 +1,4 @@
+import StyledButton from "@/components/StyledButton"
 import StyledText from "@/components/StyledText"
 import { COLORS } from "@/constants/ui"
 import React from "react"
@@ -18,6 +19,17 @@ const TodoItem: React.FC<TodoItemProps> = ({ title, isCompleted }) => {
             >
                 {title}
             </StyledText>
+            <View style={styles.controlsContainer}>
+                <StyledButton 
+                    icon="pencil"
+                    size="small"
+                />
+                <StyledButton 
+                    icon="trash"
+                    size="small"
+                    variant="danger"
+                />
+            </View>
         </View>
     )
 }
@@ -32,6 +44,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 15,
         marginVertical: 10,
-        backgroundColor: COLORS.SECONDARY_BACKGROUND
+        backgroundColor: COLORS.SECONDARY_BACKGROUND,
+    },
+    
+    controlsContainer: {
+        flexDirection: "row",
+        gap: 5,
     }
 })
