@@ -16,6 +16,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({
     icon, 
     size = "default", 
     variant = "primary",
+    disabled,
     ...props 
 }) => {
     return (
@@ -26,8 +27,11 @@ const StyledButton: React.FC<StyledButtonProps> = ({
                 size === "small" ? styles.small : null,
                 // Variants
                 variant === "danger" ? styles.danger : null,
+                // Is disabled
+                disabled ? styles.disabled : null
             ]}
             {...props}
+            disabled={disabled}
         >
             {label && <StyledText>{label}</StyledText>}
             {icon && <Ionicons name={icon} size={14} color={COLORS.PRIMARY_TEXT} />}
@@ -45,6 +49,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderRadius: 10,
         borderWidth: 1,
+    },
+    disabled: {
+        opacity: 0.7
     },
     // Sizes
     small: {

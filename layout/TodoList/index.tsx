@@ -1,6 +1,6 @@
 import { Todo } from "@/types/todo"
 import React from "react"
-import { FlatList, Text, View } from "react-native"
+import { FlatList, StyleSheet, Text, View } from "react-native"
 import TodoItem from "@/layout/TodoItem"
 
 type TodoListProps = {
@@ -9,7 +9,9 @@ type TodoListProps = {
 
 const TodoList: React.FC<TodoListProps> = ({todos}) => {
     return (
-        <View>
+        <View
+            style={styles.container}
+        >
             <FlatList 
                 data={todos} 
                 keyExtractor={(todo) => todo.id.toString()} 
@@ -20,3 +22,9 @@ const TodoList: React.FC<TodoListProps> = ({todos}) => {
 }
 
 export default TodoList
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})

@@ -1,7 +1,7 @@
 import { COLORS } from "@/constants/ui"
 import { StyleSheet, Text, TextProps } from "react-native"
 
-type StyledText = TextProps
+type StyledTextProps = TextProps
 
 const StyledText: React.FC<StyledTextProps> = ({ style, ...props }) => {
     return <Text style={[styles.base, style]} {...props}/>
