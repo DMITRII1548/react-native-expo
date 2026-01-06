@@ -4,10 +4,13 @@ import { FlatList, StyleSheet, Text, View } from "react-native"
 import TodoItem from "@/layout/TodoItem"
 
 type TodoListProps = {
-    todos: Todo[]
+    todos: Todo[],
+    onPressDeleteTodo: (id: Todo["id"]) => void,
+    onCheckTodo: (id: Todo["id"]) => void,
+    onPressUpdateTitleTodo: (id: Todo["id"], title: Todo["title"]) => void,
 }
 
-const TodoList: React.FC<TodoListProps> = ({todos}) => {
+const TodoList: React.FC<TodoListProps> = ({todos, onPressDeleteTodo, onCheckTodo, onPressUpdateTitleTodo}) => {
     return (
         <View
             style={styles.container}
@@ -15,7 +18,16 @@ const TodoList: React.FC<TodoListProps> = ({todos}) => {
             <FlatList 
                 data={todos} 
                 keyExtractor={(todo) => todo.id.toString()} 
-                renderItem={({ item }) => <TodoItem title={item.title} isCompleted={item.isCompleted} />}
+                renderItem={({ item }) => 
+                    <TodoItem 
+                        id={item.id}
+                        title={item.title} 
+                        isCompleted={item.isCompleted} 
+                        onPressDeleteTodo={ onPressDeleteTodo }
+                        onCheckTodo={ onCheckTodo }
+                        onPressUpdateTitleTodo={ onPressUpdateTitleTodo }
+                    />
+                }
             />
         </View>
     )

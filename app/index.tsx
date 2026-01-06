@@ -33,12 +33,35 @@ export default function Index() {
     setTodos([ ...todos, { id: todos.length + 1, title, isCompleted: false } ])
   }
 
+  const onPressDeleteTodo = (id: Todo["id"]) => {
+    setTodos(todos.filter((todo) => todo.id !== id))
+  }
+
+  const onCheckTodo = (id: Todo["id"]) => {
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        todo.isCompleted = !todo.isCompleted
+      }
+      return todo
+    }))
+  }
+
+  const onPressUpdateTitleTodo = (id: Todo["id"], title: Todo["title"]) => {
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        todo.title = title
+      }
+      return todo
+    }))
+  }
+
   return (
     <View
       style={styles.container}
     >
       <StatusBar 
-        barStyle={"dark-content"}/>
+        barStyle={"dark-content"}
+      />
       <Header 
         completedTodos={completedTodos.length}
         totalTodos={todos.length}
@@ -48,6 +71,9 @@ export default function Index() {
       />
       <TodoList 
         todos={todos} 
+        onPressDeleteTodo={ onPressDeleteTodo }
+        onCheckTodo={ onCheckTodo }
+        onPressUpdateTitleTodo={ onPressUpdateTitleTodo }
       />
     </View>
   );

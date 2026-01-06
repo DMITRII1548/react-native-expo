@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react"
 import { StyleSheet, View } from "react-native"
 
 type TodoCreatorProps = {
-    onAddTodo: (title: Todo["title"]) => void
+    onAddTodo: (title: Todo["title"]) => void,
 }
 
 const TodoCreator: React.FC<TodoCreatorProps> = ({ onAddTodo }) => {

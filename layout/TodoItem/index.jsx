@@ -6,21 +6,21 @@ import React from "react"
 import { StyleSheet, View } from "react-native"
 
 type TodoItemProps = {
+    id: number,
     title: string,
-    isCompleted: boolean
+    isCompleted: boolean,
+    onPressDeleteTodo: (id: Todo["id"]) => void,
+    onCheckTodo: (id: Todo["id"]) => void,
+    onPressUpdateTitleTodo: (id: Todo["id"], title: Todo["title"]) => void,
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ title, isCompleted }) => {
-    const onCheck = () => {
-
-    }
-
+const TodoItem: React.FC<TodoItemProps> = ({ id, title, isCompleted, onPressDeleteTodo, onCheckTodo, onPressUpdateTitleTodo }) => {
     return (
         <View style={styles.container}>
             <View style={styles.checkTitleContainer}>
                 <StyledCheckbox 
                     checked={isCompleted}
-                    onCheck={() => onCheck()}
+                    onCheck={() => onCheckTodo(id)}
                 />
                 <StyledText
                     style={[{
@@ -35,11 +35,13 @@ const TodoItem: React.FC<TodoItemProps> = ({ title, isCompleted }) => {
                 <StyledButton 
                     icon="pencil"
                     size="small"
+                    onPress={() => { () => {} }}
                 />
                 <StyledButton 
                     icon="trash"
                     size="small"
                     variant="danger"
+                    onPress={() => { onPressDeleteTodo(id) }}
                 />
             </View>
         </View>
