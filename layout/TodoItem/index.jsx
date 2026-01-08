@@ -5,19 +5,25 @@ import { COLORS } from "@/constants/ui"
 import React, { useState } from "react"
 import { StyleSheet, View } from "react-native"
 import EditTodoModal from "../Modals/EditTodoModal"
+import DeleteTodoModal from "../Modals/DeleteTodoModal"
 
 type TodoItemProps = {
     id: number,
     title: string,
     isCompleted: boolean,
-    onPressDeleteTodo: (id: Todo["id"]) => void,
+    onDelete: (id: Todo["id"]) => void,
     onCheckTodo: (id: Todo["id"]) => void,
     onPressUpdateTitleTodo: (id: Todo["id"], title: Todo["title"]) => void,
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ id, title, isCompleted, onPressDeleteTodo, onCheckTodo, onPressUpdateTitleTodo }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ id, title, isCompleted, onDelete, onCheckTodo, onPressUpdateTitleTodo }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
     
+    const onPressDelete = () => {
+        setIsDeleteModalOpen(true)
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.checkTitleContainer}>
@@ -45,12 +51,18 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, isCompleted, onPressDele
                     isOpen={isEditModalOpen}
                     onUpdate={(title) => onPressUpdateTitleTodo(id, title)}
                     onClose={() => setIsEditModalOpen(false)}
-                 />
+                />
+
                 <StyledButton 
                     icon="trash"
                     size="small"
                     variant="danger"
-                    onPress={() => { onPressDeleteTodo(id) }}
+                    onPress={() => setIsDeleteModalOpen(true)}
+                />
+                <DeleteTodoModal
+                    isOpen={isDeleteModalOpen}
+                    onDelete={() => onDelete(id)}
+                    onClose={() => setIsDeleteModalOpen(false)}
                 />
             </View>
         </View>

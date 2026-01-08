@@ -23,7 +23,7 @@ const TodoList: React.FC<TodoListProps> = ({todos, onPressDeleteTodo, onCheckTod
                         id={item.id}
                         title={item.title} 
                         isCompleted={item.isCompleted} 
-                        onPressDeleteTodo={ onPressDeleteTodo }
+                        onDelete={ onPressDeleteTodo }
                         onCheckTodo={ onCheckTodo }
                         onPressUpdateTitleTodo={ onPressUpdateTitleTodo }
                     />
