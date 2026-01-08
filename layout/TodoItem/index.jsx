@@ -3,7 +3,7 @@ import StyledCheckbox from "@/components/StyledCheckbox"
 import StyledText from "@/components/StyledText"
 import { COLORS } from "@/constants/ui"
 import React, { useState } from "react"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, Vibration, View } from "react-native"
 import EditTodoModal from "../Modals/EditTodoModal"
 import DeleteTodoModal from "../Modals/DeleteTodoModal"
 
@@ -22,6 +22,11 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, isCompleted, onDelete, o
     
     const onPressDelete = () => {
         setIsDeleteModalOpen(true)
+        Vibration.vibrate(50)
+    }
+
+    const onPressCheck = () => {
+        onCheckTodo(id)
     }
 
     return (
@@ -29,7 +34,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, isCompleted, onDelete, o
             <View style={styles.checkTitleContainer}>
                 <StyledCheckbox 
                     checked={isCompleted}
-                    onCheck={() => onCheckTodo(id)}
+                    onCheck={() => onPressCheck()}
                 />
                 <StyledText
                     style={[{
@@ -57,7 +62,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, isCompleted, onDelete, o
                     icon="trash"
                     size="small"
                     variant="danger"
-                    onPress={() => setIsDeleteModalOpen(true)}
+                    onPress={() => onPressDelete()}
                 />
                 <DeleteTodoModal
                     isOpen={isDeleteModalOpen}
