@@ -27,12 +27,11 @@ export default Header
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
-        paddingTop: 20,
+        paddingTop: 30,
         paddingBottom: 20,
         backgroundColor: COLORS.SECONDARY_BACKGROUND
     },
     headerMainContent: {
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
         gap: 5,
