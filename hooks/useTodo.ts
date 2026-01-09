@@ -1,23 +1,7 @@
 import { Todo } from "@/types/todo"
 import { useState } from "react"
 
-const defaultTodos: Todo[] = [
-  {
-    id: 1,
-    title: 'Make coffee',
-    isCompleted: true
-  },
-  {
-    id: 2,
-    title: 'Start working',
-    isCompleted: true
-  },
-  {
-    id: 3,
-    title: 'Finish project',
-    isCompleted: false
-  },
-]
+const defaultTodos: Todo[] = []
 
 const useTodo = () => {
     const [todos, setTodos] = useState<Todo[]>(defaultTodos)
